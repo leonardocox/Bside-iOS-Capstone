@@ -74,8 +74,7 @@ Bside is a music journal where you can search for songs and albums, see their ar
 
 ## Wireframes
 
-[Add picture of your hand sketched wireframes in this section]
-<img src="YOUR_WIREFRAME_IMAGE_URL" width=600>
+<img src="wireframes.jpg.jpg" width=600 alt="hand drawn Bside wireframes">
 
 ### [BONUS] Digital Wireframes & Mockups
 
