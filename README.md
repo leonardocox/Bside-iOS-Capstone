@@ -76,6 +76,16 @@ Bside is a music journal where you can search for songs and albums, see their ar
 
 <img src="wireframes.jpg.jpg" width=600 alt="hand drawn Bside wireframes">
 
+## Project Progress
+
+Bside now runs in the simulator with Discover and Journal tabs. In Discover, a user can search the music catalog and see matching songs and albums in a scrolling list with their titles and artists. Searching again replaces the previous results.
+
+The Music Detail, Review, and saved Journal features are still in development. The next design step is to show the artwork beside each search result, following the hand drawn wireframes.
+
+### Progress Video
+
+[Watch the current Bside app progress](https://www.loom.com/share/835269e31e2246f4b1ce620f44674c5b)
+
 ## Schema 
 
 [This section will be completed in Unit 9]
