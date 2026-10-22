@@ -9,7 +9,16 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    
+    @IBOutlet weak var tableView: UITableView!
+    
     private let musicService = MusicService()
+    private var songs: [MusicItem] = []
+    private var albums: [MusicItem] = []
+    
+    private var musicItems: [MusicItem] {
+        albums + songs
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,11 +37,18 @@ extension ViewController: UISearchBarDelegate {
         }
 
         searchBar.resignFirstResponder()
+        
+        // makes a new search start with an empty list
+        songs = []
+        albums = []
+        tableView.reloadData()
 
         // Check that real song results can be fetched and decoded.
         musicService.search(for: term, type: .song) { result in
             switch result {
             case .success(let songs):
+                self.songs = songs
+                self.tableView.reloadData()
                 print("Bside song search returned \(songs.count) results")
 
                 if let firstSong = songs.first {
@@ -48,6 +64,8 @@ extension ViewController: UISearchBarDelegate {
         musicService.search(for: term, type: .album) { result in
             switch result {
             case .success(let albums):
+                self.albums = albums
+                self.tableView.reloadData()
                 print("Bside album search returned \(albums.count) results")
 
                 if let firstAlbum = albums.first {
@@ -58,5 +76,23 @@ extension ViewController: UISearchBarDelegate {
                 print("Bside album search failed: \(error)")
             }
         }
+    }
+}
+
+// gives the number of music results and the content for each discover row
+extension ViewController: UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        musicItems.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MusicCell", for: indexPath)
+        let item = musicItems[indexPath.row]
+
+        cell.textLabel?.text = item.title
+        cell.detailTextLabel?.text = item.artistName
+
+        return cell
     }
 }
