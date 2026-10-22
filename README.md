@@ -76,10 +76,6 @@ Bside is a music journal where you can search for songs and albums, see their ar
 
 <img src="wireframes.jpg.jpg" width=600 alt="hand drawn Bside wireframes">
 
-### [BONUS] Digital Wireframes & Mockups
-
-### [BONUS] Interactive Prototype
-
 ## Schema 
 
 [This section will be completed in Unit 9]
