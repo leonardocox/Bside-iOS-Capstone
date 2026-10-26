@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import NukeExtensions
 
 class ViewController: UIViewController {
     
@@ -97,6 +98,7 @@ extension ViewController: UITableViewDataSource {
         cell.titleLabel.text = item.title
         cell.artistLabel.text = item.artistName
         cell.artworkImageView.image = nil
+        NukeExtensions.loadImage(with: item.artworkUrl100, into: cell.artworkImageView)
 
         return cell
     }

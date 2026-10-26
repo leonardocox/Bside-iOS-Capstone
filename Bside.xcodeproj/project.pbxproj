@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		ACD4CDFC308FC98300A706AA /* NukeExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = ACD4CDFB308FC98300A706AA /* NukeExtensions */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		ACB89FDB308A7FFD0025D58D /* Bside.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bside.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -36,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ACD4CDFC308FC98300A706AA /* NukeExtensions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -78,6 +83,7 @@
 			);
 			name = Bside;
 			packageProductDependencies = (
+				ACD4CDFB308FC98300A706AA /* NukeExtensions */,
 			);
 			productName = Bside;
 			productReference = ACB89FDB308A7FFD0025D58D /* Bside.app */;
@@ -107,6 +113,9 @@
 			);
 			mainGroup = ACB89FD2308A7FFD0025D58D;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				ACD4CDFA308FC98300A706AA /* XCRemoteSwiftPackageReference "Nuke" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = ACB89FDC308A7FFD0025D58D /* Products */;
 			projectDirPath = "";
@@ -341,6 +350,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		ACD4CDFA308FC98300A706AA /* XCRemoteSwiftPackageReference "Nuke" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Nuke";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 13.2.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		ACD4CDFB308FC98300A706AA /* NukeExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = ACD4CDFA308FC98300A706AA /* XCRemoteSwiftPackageReference "Nuke" */;
+			productName = NukeExtensions;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = ACB89FD3308A7FFD0025D58D /* Project object */;
 }
