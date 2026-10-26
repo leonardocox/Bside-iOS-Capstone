@@ -87,11 +87,16 @@ extension ViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MusicCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: "MusicCell",
+            for: indexPath
+        ) as! MusicResultCell
+
         let item = musicItems[indexPath.row]
 
-        cell.textLabel?.text = item.title
-        cell.detailTextLabel?.text = item.artistName
+        cell.titleLabel.text = item.title
+        cell.artistLabel.text = item.artistName
+        cell.artworkImageView.image = nil
 
         return cell
     }
