@@ -25,6 +25,17 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "showMusicDetail",
+              let selectedCell = sender as? MusicResultCell,
+              let indexPath = tableView.indexPath(for: selectedCell),
+              let detailViewController = segue.destination as? MusicDetailViewController else {
+            return
+        }
+
+        detailViewController.musicItem = musicItems[indexPath.row]
+    }
 
 
 }

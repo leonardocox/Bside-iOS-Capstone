@@ -71,6 +71,7 @@
                                             <outlet property="artistLabel" destination="1DE-el-S44" id="VoU-ds-ZQI"/>
                                             <outlet property="artworkImageView" destination="HTS-87-CoC" id="NWX-xc-Bh3"/>
                                             <outlet property="titleLabel" destination="U2m-li-qBQ" id="4dK-WB-ftA"/>
+                                            <segue destination="t44-xx-gLI" kind="show" identifier="showMusicDetail" id="aIU-lA-PGL"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -103,17 +104,65 @@
         <!--Music Detail-->
         <scene sceneID="Dft-LH-FL6">
             <objects>
-                <viewController title="Music Detail" id="t44-xx-gLI" sceneMemberID="viewController">
+                <viewController title="Music Detail" id="t44-xx-gLI" customClass="MusicDetailViewController" customModule="Bside" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wC4-yg-irN">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="x0Z-Ws-EYx">
+                                <rect key="frame" x="84.666666666666686" y="196" width="224" height="224"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="224" id="AOC-0f-CHz"/>
+                                    <constraint firstAttribute="height" constant="224" id="fne-vf-4cX"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Music Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HNj-tX-e4M">
+                                <rect key="frame" x="24" y="440" width="345" height="26.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RVI-gT-oOJ">
+                                <rect key="frame" x="24" y="661" width="345" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="13S-0T-Cd4"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Write Review"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KU-hu-S4A">
+                                <rect key="frame" x="24" y="474.33333333333331" width="345" height="20.333333333333314"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="dFx-l9-tgk"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="HNj-tX-e4M" firstAttribute="leading" secondItem="dFx-l9-tgk" secondAttribute="leading" constant="24" id="1Q1-Ud-Jru"/>
+                            <constraint firstItem="dFx-l9-tgk" firstAttribute="trailing" secondItem="RVI-gT-oOJ" secondAttribute="trailing" constant="24" id="27D-5k-jRo"/>
+                            <constraint firstItem="HNj-tX-e4M" firstAttribute="top" secondItem="x0Z-Ws-EYx" secondAttribute="bottom" constant="20" id="5GP-Jj-7E9"/>
+                            <constraint firstItem="dFx-l9-tgk" firstAttribute="trailing" secondItem="5KU-hu-S4A" secondAttribute="trailing" constant="24" id="IQy-ll-XUU"/>
+                            <constraint firstItem="x0Z-Ws-EYx" firstAttribute="top" secondItem="dFx-l9-tgk" secondAttribute="top" constant="24" id="KLU-Ea-8Sw"/>
+                            <constraint firstItem="dFx-l9-tgk" firstAttribute="bottom" secondItem="RVI-gT-oOJ" secondAttribute="bottom" constant="24" id="QOk-Bp-dad"/>
+                            <constraint firstItem="5KU-hu-S4A" firstAttribute="leading" secondItem="dFx-l9-tgk" secondAttribute="leading" constant="24" id="Xy2-84-DsI"/>
+                            <constraint firstItem="RVI-gT-oOJ" firstAttribute="leading" secondItem="dFx-l9-tgk" secondAttribute="leading" constant="24" id="awH-Ut-luy"/>
+                            <constraint firstItem="x0Z-Ws-EYx" firstAttribute="centerX" secondItem="dFx-l9-tgk" secondAttribute="centerX" id="h5T-m3-gF1"/>
+                            <constraint firstItem="dFx-l9-tgk" firstAttribute="trailing" secondItem="HNj-tX-e4M" secondAttribute="trailing" constant="24" id="hfn-JX-bsL"/>
+                            <constraint firstItem="5KU-hu-S4A" firstAttribute="top" secondItem="HNj-tX-e4M" secondAttribute="bottom" constant="8" id="iT2-4n-3j1"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="g0f-8e-PTU"/>
+                    <connections>
+                        <outlet property="artistLabel" destination="5KU-hu-S4A" id="etU-a6-kTg"/>
+                        <outlet property="artworkImageView" destination="x0Z-Ws-EYx" id="urQ-sP-haE"/>
+                        <outlet property="titleLabel" destination="HNj-tX-e4M" id="ZGL-24-f1v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O9Q-bK-06g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1160" y="777"/>
+            <point key="canvasLocation" x="1159.5419847328244" y="776.76056338028172"/>
         </scene>
         <!--Review-->
         <scene sceneID="oR3-k3-yp1">
