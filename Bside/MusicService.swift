@@ -68,4 +68,65 @@ final class MusicService {
             }
         }.resume()
     }
+    
+    // Fetches the songs for one album using its iTunes collection ID
+    // basically is taking an album id, requesting album's songs, removes the album entry from the response, and then hands the song list back via completion
+    func tracks(
+        for collectionId: Int,
+        completion: @escaping (Result<[MusicItem], Error>) -> Void
+    ) {
+        // Build a lookup URL for this album and ask the API to include songs.
+        var components = URLComponents(string: "https://itunes.apple.com/lookup")
+        components?.queryItems = [
+            URLQueryItem(name: "id", value: String(collectionId)),
+            URLQueryItem(name: "entity", value: "song"),
+            URLQueryItem(name: "country", value: "US")
+        ]
+
+        // Report an error if the URL could not be created.
+        guard let url = components?.url else {
+            completion(.failure(URLError(.badURL)))
+            return
+        }
+
+        // Start the request. The completion closure runs when the API responds.
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            DispatchQueue.main.async {
+                if let error = error {
+                    completion(.failure(error))
+                    return
+                }
+
+                // Continue only if the request succeeded and returned data.
+                guard let httpResponse = response as? HTTPURLResponse,
+                      (200...299).contains(httpResponse.statusCode),
+                      let data = data else {
+                    completion(.failure(URLError(.badServerResponse)))
+                    return
+                }
+
+                do {
+                    // Turn the JSON into the MusicItem model we already use.
+                    let lookupResponse = try JSONDecoder().decode(
+                        MusicSearchResponse.self,
+                        from: data
+                    )
+
+                    // The response includes the album itself. Keep only its songs.
+                    let tracks = lookupResponse.results.filter {
+                        $0.wrapperType == "track" &&
+                        $0.kind == "song" &&
+                        $0.collectionId == collectionId
+                    }
+
+                    // Give the finished song list back to the detail screen.
+                    completion(.success(tracks))
+                } catch {
+                    // Report a decoding error instead of showing incorrect data.
+                    completion(.failure(error))
+                }
+            }
+        }.resume()
+    }
+    
 }

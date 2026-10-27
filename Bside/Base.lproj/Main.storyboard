@@ -104,7 +104,7 @@
         <!--Music Detail-->
         <scene sceneID="Dft-LH-FL6">
             <objects>
-                <viewController title="Music Detail" id="t44-xx-gLI" customClass="MusicDetailViewController" customModule="Bside" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MusicDetailScene" title="Music Detail" id="t44-xx-gLI" customClass="MusicDetailViewController" customModule="Bside" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wC4-yg-irN">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -130,6 +130,33 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Write Review"/>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="IrH-hA-Inm">
+                                <rect key="frame" x="24" y="506.66666666666669" width="345" height="142.33333333333331"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TrackCell" textLabel="nXR-gk-gTR" style="IBUITableViewCellStyleDefault" id="sep-XG-5vk">
+                                        <rect key="frame" x="0.0" y="50" width="345" height="51"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sep-XG-5vk" id="Crc-lS-a3g">
+                                            <rect key="frame" x="0.0" y="0.0" width="345" height="51"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="nXR-gk-gTR">
+                                                    <rect key="frame" x="20" y="0.0" width="305" height="51"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="t44-xx-gLI" id="WcQ-wi-wzh"/>
+                                    <outlet property="delegate" destination="t44-xx-gLI" id="lKB-JQ-DyJ"/>
+                                </connections>
+                            </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KU-hu-S4A">
                                 <rect key="frame" x="24" y="474.33333333333331" width="345" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -143,14 +170,18 @@
                             <constraint firstItem="HNj-tX-e4M" firstAttribute="leading" secondItem="dFx-l9-tgk" secondAttribute="leading" constant="24" id="1Q1-Ud-Jru"/>
                             <constraint firstItem="dFx-l9-tgk" firstAttribute="trailing" secondItem="RVI-gT-oOJ" secondAttribute="trailing" constant="24" id="27D-5k-jRo"/>
                             <constraint firstItem="HNj-tX-e4M" firstAttribute="top" secondItem="x0Z-Ws-EYx" secondAttribute="bottom" constant="20" id="5GP-Jj-7E9"/>
+                            <constraint firstItem="IrH-hA-Inm" firstAttribute="top" secondItem="5KU-hu-S4A" secondAttribute="bottom" constant="12" id="8YB-RV-JpM"/>
                             <constraint firstItem="dFx-l9-tgk" firstAttribute="trailing" secondItem="5KU-hu-S4A" secondAttribute="trailing" constant="24" id="IQy-ll-XUU"/>
                             <constraint firstItem="x0Z-Ws-EYx" firstAttribute="top" secondItem="dFx-l9-tgk" secondAttribute="top" constant="24" id="KLU-Ea-8Sw"/>
+                            <constraint firstItem="RVI-gT-oOJ" firstAttribute="top" secondItem="IrH-hA-Inm" secondAttribute="bottom" constant="12" id="No7-Pi-X12"/>
                             <constraint firstItem="dFx-l9-tgk" firstAttribute="bottom" secondItem="RVI-gT-oOJ" secondAttribute="bottom" constant="24" id="QOk-Bp-dad"/>
                             <constraint firstItem="5KU-hu-S4A" firstAttribute="leading" secondItem="dFx-l9-tgk" secondAttribute="leading" constant="24" id="Xy2-84-DsI"/>
                             <constraint firstItem="RVI-gT-oOJ" firstAttribute="leading" secondItem="dFx-l9-tgk" secondAttribute="leading" constant="24" id="awH-Ut-luy"/>
                             <constraint firstItem="x0Z-Ws-EYx" firstAttribute="centerX" secondItem="dFx-l9-tgk" secondAttribute="centerX" id="h5T-m3-gF1"/>
                             <constraint firstItem="dFx-l9-tgk" firstAttribute="trailing" secondItem="HNj-tX-e4M" secondAttribute="trailing" constant="24" id="hfn-JX-bsL"/>
                             <constraint firstItem="5KU-hu-S4A" firstAttribute="top" secondItem="HNj-tX-e4M" secondAttribute="bottom" constant="8" id="iT2-4n-3j1"/>
+                            <constraint firstItem="dFx-l9-tgk" firstAttribute="trailing" secondItem="IrH-hA-Inm" secondAttribute="trailing" constant="24" id="ixD-Ys-sAn"/>
+                            <constraint firstItem="IrH-hA-Inm" firstAttribute="leading" secondItem="dFx-l9-tgk" secondAttribute="leading" constant="24" id="pTG-Qq-5xp"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="g0f-8e-PTU"/>
@@ -158,6 +189,7 @@
                         <outlet property="artistLabel" destination="5KU-hu-S4A" id="etU-a6-kTg"/>
                         <outlet property="artworkImageView" destination="x0Z-Ws-EYx" id="urQ-sP-haE"/>
                         <outlet property="titleLabel" destination="HNj-tX-e4M" id="ZGL-24-f1v"/>
+                        <outlet property="tracksTableView" destination="IrH-hA-Inm" id="AaV-z4-CeI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O9Q-bK-06g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
