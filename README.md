@@ -5,10 +5,11 @@ Bside Capstone README
 
 ## Table of Contents
 
-1. [Overview](#Overview)
-2. [Product Spec](#Product-Spec)
-3. [Wireframes](#Wireframes)
-4. [Schema](#Schema)
+1. [Overview](#overview)
+2. [Product Spec](#product-spec)
+3. [Wireframes](#wireframes)
+4. [Project Progress](#project-progress)
+5. [Schema](#schema)
 
 ## Overview
 
@@ -31,12 +32,14 @@ Bside is a music journal where you can search for songs and albums, see their ar
 
 **Required Must-have Stories**
 
-* A user can search for music and see matching songs and albums with artwork.
-* A user can select a song or album to view its details.
-* A user can mark whether an entry is a first listen.
-* A user can give a song or album a rating and write a short review.
-* A user can save an entry and find it in their personal journal.
-* A user's journal entries remain available after closing and reopening the app.
+**Required Must-have Stories**
+
+- [x] A user can search for music and see matching songs and albums with artwork.
+- [x] A user can select a song or album to view its details.
+- [ ] A user can mark whether an entry is a first listen.
+- [ ] A user can give a song or album a rating and write a short review.
+- [ ] A user can save an entry and find it in their personal journal.
+- [ ] A user's journal entries remain available after closing and reopening the app.
 
 **Optional Nice-to-have Stories**
 
@@ -45,9 +48,9 @@ Bside is a music journal where you can search for songs and albums, see their ar
 
 ### 2. Screen Archetypes
 
-- [ ] Discover Screen
+- [x] Discover Screen
   * Users can search for music and see matching songs and albums with artwork.
-- [ ] Music Detail Screen
+- [x] Music Detail Screen
   * Users can select a song or album and view its details.
 - [ ] Review Screen
   * Users can mark a first listen, give a rating, write a short review, and save the entry.
@@ -63,9 +66,10 @@ Bside is a music journal where you can search for songs and albums, see their ar
 
 **Flow Navigation** (Screen to Screen)
 
-- [ ] Discover Screen
+- [x] Discover Screen
   * Selecting a search result opens the Music Detail Screen.
 - [ ] Music Detail Screen
+  * [x] Selecting a track from an album opens that song's Music Detail Screen.
   * Choosing to review the selected song or album opens the Review Screen.
 - [ ] Review Screen
   * Saving the review opens the Journal Screen so the new entry is visible.
@@ -78,13 +82,19 @@ Bside is a music journal where you can search for songs and albums, see their ar
 
 ## Project Progress
 
-Bside now runs in the simulator with Discover and Journal tabs. In Discover, a user can search the music catalog and see matching songs and albums in a scrolling list with their titles and artists. Searching again replaces the previous results.
+### Unit 8 Submission Checkpoint
 
-The Music Detail, Review, and saved Journal features are still in development. The next design step is to show the artwork beside each search result, following the hand drawn wireframes.
+Bside ran in the simulator with Discover and Journal tabs. In Discover, a user could search the music catalog and see matching songs and albums in a scrolling list with their titles and artists. Searching again replaced the previous results.
 
-### Progress Video
+At this checkpoint, Music Detail, Review, and saved Journal entries were still in development. Showing artwork beside each search result was the next design step.
 
-[Watch the current Bside app progress](https://www.loom.com/share/835269e31e2246f4b1ce620f44674c5b)
+[Watch the Unit 8 progress video](https://www.loom.com/share/835269e31e2246f4b1ce620f44674c5b)
+
+### October 27 Checkpoint
+
+Discover now shows artwork alongside matching songs and albums. Selecting a result opens Music Detail with its artwork, title, and artist. Opening an album loads its track list, and selecting a track opens that song's detail screen. I tested going back and opening a different album to confirm that its own tracks appear.
+
+The next focus is opening Review from Music Detail, recording a rating and listening notes, and saving entries so they appear in Journal after the app is reopened.
 
 ## Schema 
 
