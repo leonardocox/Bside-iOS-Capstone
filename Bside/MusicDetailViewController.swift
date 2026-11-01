@@ -51,6 +51,16 @@ class MusicDetailViewController: UIViewController {
             }
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard segue.identifier == "showReview",
+              let reviewViewController = segue.destination as? ReviewViewController else {
+            return
+        }
+
+        reviewViewController.musicItem = musicItem
+    }
+    
 }
 
 // Supplies one table row for each song returned in the album lookup.
