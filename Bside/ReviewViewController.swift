@@ -29,6 +29,13 @@ class ReviewViewController: UIViewController, UITextViewDelegate {
 
         title = "Review"
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Save",
+            style: .plain,
+            target: self,
+            action: #selector(saveReview)
+        )
+        
         configureStars()
         updateStars()
         
@@ -157,6 +164,54 @@ class ReviewViewController: UIViewController, UITextViewDelegate {
         UIView.animate(withDuration: 0.25) {
             self.view.transform = .identity
         }
+    }
+    
+    @objc private func saveReview() {
+        guard let musicItem = musicItem else {
+            showSaveError("The selected music is missing.")
+            return
+        }
+
+        guard rating > 0 else {
+            showSaveError("Choose a star rating before saving.")
+            return
+        }
+
+        let reviewText: String
+        if reviewTextView.textColor == .placeholderText {
+            reviewText = ""
+        } else {
+            reviewText = reviewTextView.text
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+        }
+
+        let review = MusicReview(
+            id: UUID(),
+            musicItem: musicItem,
+            firstListen: firstListenSwitch.isOn,
+            liked: likedSwitch.isOn,
+            rating: rating,
+            reviewText: reviewText,
+            createdAt: Date()
+        )
+
+        do {
+            try ReviewStore.add(review)
+            navigationController?.popViewController(animated: true)
+        } catch {
+            showSaveError("Your review could not be saved. Please try again.")
+            print("Review save failed: \(error)")
+        }
+    }
+
+    private func showSaveError(_ message: String) {
+        let alert = UIAlertController(
+            title: "Could Not Save Review",
+            message: message,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        present(alert, animated: true)
     }
 
     deinit {
