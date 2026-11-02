@@ -8,7 +8,7 @@
 import UIKit
 import NukeExtensions
 
-class ReviewViewController: UIViewController {
+class ReviewViewController: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var artworkImageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -16,11 +16,13 @@ class ReviewViewController: UIViewController {
     @IBOutlet weak var firstListenSwitch: UISwitch!
     @IBOutlet weak var likedSwitch: UISwitch!
     @IBOutlet weak var starStackView: UIStackView!
+    @IBOutlet weak var reviewTextView: UITextView!
     
     // the song or album passed from music detail
     var musicItem: MusicItem?
     
     private var rating: Double = 0
+    private let reviewPlaceholder = "Write a review?"
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,6 +31,41 @@ class ReviewViewController: UIViewController {
         
         configureStars()
         updateStars()
+        
+        reviewTextView.delegate = self
+        reviewTextView.text = reviewPlaceholder
+        reviewTextView.textColor = .placeholderText
+        
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        toolbar.items = [
+            UIBarButtonItem(
+                barButtonSystemItem: .flexibleSpace,
+                target: nil,
+                action: nil
+            ),
+            UIBarButtonItem(
+                title: "Done",
+                style: .plain,
+                target: self,
+                action: #selector(doneWriting)
+            )
+        ]
+        reviewTextView.inputAccessoryView = toolbar
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillShow(_:)),
+            name: UIResponder.keyboardWillShowNotification,
+            object: nil
+        )
+
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillHide(_:)),
+            name: UIResponder.keyboardWillHideNotification,
+            object: nil
+        )
 
         if let musicItem = musicItem {
             titleLabel.text = musicItem.title
@@ -79,5 +116,53 @@ class ReviewViewController: UIViewController {
             button.setImage(UIImage(systemName: imageName), for: .normal)
         }
     }
+    
+    @objc private func keyboardWillShow(_ notification: Notification) {
+        guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect else {
+            return
+        }
+
+        // Measure from the storyboard position, even if the view was already moved.
+        view.transform = .identity
+        let textFrame = reviewTextView.convert(reviewTextView.bounds, to: nil)
+        let overlap = textFrame.maxY + 16 - keyboardFrame.minY
+
+        UIView.animate(withDuration: 0.25) {
+            self.view.transform = CGAffineTransform(
+                translationX: 0,
+                y: -max(0, overlap)
+            )
+        }
+    }
+    
+    @objc private func doneWriting() {
+        reviewTextView.resignFirstResponder()
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == reviewPlaceholder {
+            textView.text = ""
+            textView.textColor = .label
+        }
+    }
+
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            textView.text = reviewPlaceholder
+            textView.textColor = .placeholderText
+        }
+    }
+
+    @objc private func keyboardWillHide(_ notification: Notification) {
+        UIView.animate(withDuration: 0.25) {
+            self.view.transform = .identity
+        }
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    
 
 }
