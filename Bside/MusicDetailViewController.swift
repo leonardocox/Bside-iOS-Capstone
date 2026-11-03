@@ -40,16 +40,61 @@ class MusicDetailViewController: UIViewController {
             previewButton.setTitle("Pause Preview", for: .normal)
         }
     }
+    
+    @objc private func trackPreviewTapped(_ sender: UIButton) {
+        let index = sender.tag
+        guard tracks.indices.contains(index),
+              let url = tracks[index].previewUrl else { return }
+
+        if playingTrackIndex == index {
+            previewPlayer?.pause()
+            previewPlayer = nil
+            playingTrackIndex = nil
+        } else {
+            previewPlayer?.pause()
+            previewPlayer = AVPlayer(url: url)
+            previewPlayer?.play()
+            playingTrackIndex = index
+        }
+
+        tracksTableView.reloadData()
+    }
+    
+    @objc private func previewDidFinish(_ notification: Notification) {
+        guard let finishedItem = notification.object as? AVPlayerItem else { return }
+
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self,
+                  self.previewPlayer?.currentItem === finishedItem else { return }
+
+            self.previewPlayer = nil
+            self.playingTrackIndex = nil
+
+            if self.musicItem?.isAlbum == true {
+                self.tracksTableView.reloadData()
+            } else {
+                self.previewButton.setTitle("Play Preview", for: .normal)
+            }
+        }
+    }
         
     var musicItem: MusicItem?
     
     private let musicService = MusicService()
     private var tracks: [MusicItem] = []
     private var previewPlayer: AVPlayer?
+    private var playingTrackIndex: Int?
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(previewDidFinish(_:)),
+            name: .AVPlayerItemDidPlayToEndTime,
+            object: nil
+        )
 
         title = "Music Detail"
 
@@ -85,6 +130,7 @@ class MusicDetailViewController: UIViewController {
         super.viewWillDisappear(animated)
         previewPlayer?.pause()
         previewPlayer = nil
+        playingTrackIndex = nil
         previewButton.setTitle("Play Preview", for: .normal)
     }
     
@@ -95,6 +141,11 @@ class MusicDetailViewController: UIViewController {
         }
 
         reviewViewController.musicItem = musicItem
+    }
+    
+    // this is for setting the play button back in case the preview ends naturally
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
 }
@@ -110,12 +161,32 @@ extension MusicDetailViewController: UITableViewDataSource {
         _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
+        guard let cell = tableView.dequeueReusableCell(
             withIdentifier: "TrackCell",
             for: indexPath
-        )
+        ) as? TrackPreviewCell else {
+            return UITableViewCell()
+        }
 
-        cell.textLabel?.text = tracks[indexPath.row].title
+        cell.trackTitleLabel.text = tracks[indexPath.row].title
+        
+        cell.trackPreviewButton.tag = indexPath.row
+        cell.trackPreviewButton.isEnabled = tracks[indexPath.row].previewUrl != nil
+        cell.trackPreviewButton.setTitle(
+            playingTrackIndex == indexPath.row ? "❚❚" : "▶",
+            for: .normal
+        )
+        cell.trackPreviewButton.removeTarget(
+            self,
+            action: #selector(trackPreviewTapped(_:)),
+            for: .touchUpInside
+        )
+        cell.trackPreviewButton.addTarget(
+            self,
+            action: #selector(trackPreviewTapped(_:)),
+            for: .touchUpInside
+        )
+        
         return cell
     }
 }
