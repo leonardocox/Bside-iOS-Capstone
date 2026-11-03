@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -119,7 +120,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Music Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HNj-tX-e4M">
                                 <rect key="frame" x="24" y="440" width="345" height="26.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="BsideInk"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RVI-gT-oOJ">
@@ -127,6 +128,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="13S-0T-Cd4"/>
                                 </constraints>
+                                <color key="tintColor" name="BsideAccent"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Write Review"/>
                                 <connections>
@@ -136,6 +138,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="IrH-hA-Inm">
                                 <rect key="frame" x="24" y="562.66666666666663" width="345" height="86.333333333333371"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="sectionIndexBackgroundColor" name="BsideBackground"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TrackCell" id="sep-XG-5vk" customClass="TrackPreviewCell" customModule="Bside" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="345" height="51"/>
@@ -156,6 +159,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="3O4-2p-1GF" firstAttribute="leading" secondItem="Crc-lS-a3g" secondAttribute="leading" constant="16" id="JWL-mf-yMH"/>
                                                 <constraint firstItem="8Hk-L2-waI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3O4-2p-1GF" secondAttribute="trailing" constant="8" id="Jf5-bP-gYG"/>
@@ -164,6 +168,7 @@
                                                 <constraint firstItem="8Hk-L2-waI" firstAttribute="centerY" secondItem="Crc-lS-a3g" secondAttribute="centerY" id="t9c-6v-bNI"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
                                             <outlet property="trackPreviewButton" destination="8Hk-L2-waI" id="AH6-eu-wIZ"/>
                                             <outlet property="trackTitleLabel" destination="3O4-2p-1GF" id="Uxz-3z-H4w"/>
@@ -186,15 +191,15 @@
                                     <action selector="previewTapped:" destination="t44-xx-gLI" eventType="touchUpInside" id="0fS-Za-Y2p"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KU-hu-S4A">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KU-hu-S4A">
                                 <rect key="frame" x="24" y="474.33333333333331" width="345" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" systemColor="secondaryLabelColor"/>
+                                <color key="textColor" name="BsideInk"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="dFx-l9-tgk"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="BsideBackground"/>
                         <constraints>
                             <constraint firstItem="HNj-tX-e4M" firstAttribute="leading" secondItem="dFx-l9-tgk" secondAttribute="leading" constant="24" id="1Q1-Ud-Jru"/>
                             <constraint firstItem="dFx-l9-tgk" firstAttribute="trailing" secondItem="RVI-gT-oOJ" secondAttribute="trailing" constant="24" id="27D-5k-jRo"/>
@@ -583,6 +588,15 @@
     </scenes>
     <resources>
         <image name="star" catalog="system" width="128" height="116"/>
+        <namedColor name="BsideAccent">
+            <color red="0.19215686274509805" green="0.74901960784313726" blue="0.84313725490196079" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="BsideBackground">
+            <color red="0.96078431372549022" green="0.95294117647058818" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="BsideInk">
+            <color red="0.090196078431372548" green="0.12941176470588237" blue="0.23137254901960785" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

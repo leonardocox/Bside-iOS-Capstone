@@ -187,6 +187,9 @@ extension MusicDetailViewController: UITableViewDataSource {
             for: .touchUpInside
         )
         
+        var background = UIBackgroundConfiguration.listCell()
+        background.backgroundColor = UIColor(named: "BsideBackground")
+        cell.backgroundConfiguration = background
         return cell
     }
 }
