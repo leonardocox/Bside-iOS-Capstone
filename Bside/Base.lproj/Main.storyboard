@@ -134,7 +134,7 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="IrH-hA-Inm">
-                                <rect key="frame" x="24" y="506.66666666666669" width="345" height="142.33333333333331"/>
+                                <rect key="frame" x="24" y="562.66666666666663" width="345" height="86.333333333333371"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TrackCell" textLabel="nXR-gk-gTR" style="IBUITableViewCellStyleDefault" id="sep-XG-5vk">
@@ -160,6 +160,17 @@
                                     <outlet property="delegate" destination="t44-xx-gLI" id="lKB-JQ-DyJ"/>
                                 </connections>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dhx-E8-n0a">
+                                <rect key="frame" x="24" y="506.66666666666674" width="345" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="Dez-G9-zxD"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Play Preview"/>
+                                <connections>
+                                    <action selector="previewTapped:" destination="t44-xx-gLI" eventType="touchUpInside" id="0fS-Za-Y2p"/>
+                                </connections>
+                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5KU-hu-S4A">
                                 <rect key="frame" x="24" y="474.33333333333331" width="345" height="20.333333333333314"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -173,13 +184,16 @@
                             <constraint firstItem="HNj-tX-e4M" firstAttribute="leading" secondItem="dFx-l9-tgk" secondAttribute="leading" constant="24" id="1Q1-Ud-Jru"/>
                             <constraint firstItem="dFx-l9-tgk" firstAttribute="trailing" secondItem="RVI-gT-oOJ" secondAttribute="trailing" constant="24" id="27D-5k-jRo"/>
                             <constraint firstItem="HNj-tX-e4M" firstAttribute="top" secondItem="x0Z-Ws-EYx" secondAttribute="bottom" constant="20" id="5GP-Jj-7E9"/>
-                            <constraint firstItem="IrH-hA-Inm" firstAttribute="top" secondItem="5KU-hu-S4A" secondAttribute="bottom" constant="12" id="8YB-RV-JpM"/>
                             <constraint firstItem="dFx-l9-tgk" firstAttribute="trailing" secondItem="5KU-hu-S4A" secondAttribute="trailing" constant="24" id="IQy-ll-XUU"/>
                             <constraint firstItem="x0Z-Ws-EYx" firstAttribute="top" secondItem="dFx-l9-tgk" secondAttribute="top" constant="24" id="KLU-Ea-8Sw"/>
                             <constraint firstItem="RVI-gT-oOJ" firstAttribute="top" secondItem="IrH-hA-Inm" secondAttribute="bottom" constant="12" id="No7-Pi-X12"/>
                             <constraint firstItem="dFx-l9-tgk" firstAttribute="bottom" secondItem="RVI-gT-oOJ" secondAttribute="bottom" constant="24" id="QOk-Bp-dad"/>
+                            <constraint firstItem="dhx-E8-n0a" firstAttribute="top" secondItem="5KU-hu-S4A" secondAttribute="bottom" constant="12" id="Qcb-YE-95Y"/>
+                            <constraint firstItem="dhx-E8-n0a" firstAttribute="leading" secondItem="dFx-l9-tgk" secondAttribute="leading" constant="24" id="W3G-Xy-ggu"/>
+                            <constraint firstItem="dFx-l9-tgk" firstAttribute="trailing" secondItem="dhx-E8-n0a" secondAttribute="trailing" constant="24" id="XfV-nl-HTM"/>
                             <constraint firstItem="5KU-hu-S4A" firstAttribute="leading" secondItem="dFx-l9-tgk" secondAttribute="leading" constant="24" id="Xy2-84-DsI"/>
                             <constraint firstItem="RVI-gT-oOJ" firstAttribute="leading" secondItem="dFx-l9-tgk" secondAttribute="leading" constant="24" id="awH-Ut-luy"/>
+                            <constraint firstItem="IrH-hA-Inm" firstAttribute="top" secondItem="dhx-E8-n0a" secondAttribute="bottom" constant="12" id="f95-9E-L8Y"/>
                             <constraint firstItem="x0Z-Ws-EYx" firstAttribute="centerX" secondItem="dFx-l9-tgk" secondAttribute="centerX" id="h5T-m3-gF1"/>
                             <constraint firstItem="dFx-l9-tgk" firstAttribute="trailing" secondItem="HNj-tX-e4M" secondAttribute="trailing" constant="24" id="hfn-JX-bsL"/>
                             <constraint firstItem="5KU-hu-S4A" firstAttribute="top" secondItem="HNj-tX-e4M" secondAttribute="bottom" constant="8" id="iT2-4n-3j1"/>
@@ -191,6 +205,8 @@
                     <connections>
                         <outlet property="artistLabel" destination="5KU-hu-S4A" id="etU-a6-kTg"/>
                         <outlet property="artworkImageView" destination="x0Z-Ws-EYx" id="urQ-sP-haE"/>
+                        <outlet property="previewButton" destination="dhx-E8-n0a" id="3Yl-Lf-bmW"/>
+                        <outlet property="previewButtonHeightConstraint" destination="Dez-G9-zxD" id="gz4-Sw-taD"/>
                         <outlet property="titleLabel" destination="HNj-tX-e4M" id="ZGL-24-f1v"/>
                         <outlet property="tracksTableView" destination="IrH-hA-Inm" id="AaV-z4-CeI"/>
                     </connections>

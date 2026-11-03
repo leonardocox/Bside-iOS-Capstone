@@ -7,6 +7,7 @@
 
 import UIKit
 import NukeExtensions
+import AVFoundation
 
 class MusicDetailViewController: UIViewController {
     
@@ -14,11 +15,37 @@ class MusicDetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var artistLabel: UILabel!
     @IBOutlet weak var tracksTableView: UITableView!
+    @IBOutlet weak var previewButton: UIButton!
+    @IBOutlet weak var previewButtonHeightConstraint: NSLayoutConstraint!
     
+    @IBAction func previewTapped(_ sender: Any) {
+        guard let musicItem = musicItem,
+              !musicItem.isAlbum,
+              let previewURL = musicItem.previewUrl else {
+            return
+        }
+        print("BSIDE PREVIEW URL: \(previewURL)")
+
+        if let previewPlayer = previewPlayer {
+            if previewPlayer.rate > 0 {
+                previewPlayer.pause()
+                previewButton.setTitle("Play Preview", for: .normal)
+            } else {
+                previewPlayer.play()
+                previewButton.setTitle("Pause Preview", for: .normal)
+            }
+        } else {
+            previewPlayer = AVPlayer(url: previewURL)
+            previewPlayer?.play()
+            previewButton.setTitle("Pause Preview", for: .normal)
+        }
+    }
+        
     var musicItem: MusicItem?
     
     private let musicService = MusicService()
     private var tracks: [MusicItem] = []
+    private var previewPlayer: AVPlayer?
     
 
     override func viewDidLoad() {
@@ -34,6 +61,8 @@ class MusicDetailViewController: UIViewController {
         
         // A directly selected song has no album track list to show.
         tracksTableView.isHidden = !musicItem.isAlbum
+        previewButton.isHidden = musicItem.isAlbum || musicItem.previewUrl == nil
+        previewButtonHeightConstraint.constant = previewButton.isHidden ? 0 : 44
 
         // Only albums with a collection ID can request their songs.
         if musicItem.isAlbum, let collectionId = musicItem.collectionId {
@@ -50,6 +79,13 @@ class MusicDetailViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        previewPlayer?.pause()
+        previewPlayer = nil
+        previewButton.setTitle("Play Preview", for: .normal)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
