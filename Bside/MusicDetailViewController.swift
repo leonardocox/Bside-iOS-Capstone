@@ -17,6 +17,7 @@ class MusicDetailViewController: UIViewController {
     @IBOutlet weak var tracksTableView: UITableView!
     @IBOutlet weak var previewButton: UIButton!
     @IBOutlet weak var previewButtonHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var tracksTableHeightConstraint: NSLayoutConstraint!
     
     @IBAction func previewTapped(_ sender: Any) {
         guard let musicItem = musicItem,
@@ -96,13 +97,28 @@ class MusicDetailViewController: UIViewController {
             object: nil
         )
 
-        title = "Music Detail"
-
         guard let musicItem = musicItem else { return }
+        print("BSIDE ARTWORK URL:", musicItem.artworkUrl100?.absoluteString ?? "none")
+        
+        title = musicItem.isAlbum ? "BSIDE / ALBUM" : "BSIDE / TRACK"
+
+        artworkImageView.layer.borderWidth = 1
+        artworkImageView.layer.borderColor = UIColor(named: "BsideAccent")?.cgColor
+        
+        previewButton.layer.borderWidth = 1
+        previewButton.layer.borderColor = UIColor(named: "BsideAccent")?.cgColor
+        previewButton.layer.cornerRadius = 12
+        previewButton.backgroundColor = UIColor(named: "BsideAccent")?.withAlphaComponent(0.12)
+        previewButton.tintColor = UIColor(named: "BsideInk")
+        
+        tracksTableView.backgroundColor = UIColor(named: "BsideBackground")
 
         titleLabel.text = musicItem.title
         artistLabel.text = musicItem.artistName
-        NukeExtensions.loadImage(with: musicItem.artworkUrl100, into: artworkImageView)
+        titleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
+        artistLabel.setContentCompressionResistancePriority(.required, for: .vertical)
+        NukeExtensions.loadImage(with: musicItem.detailArtworkURL
+                                 , into: artworkImageView)
         
         // A directly selected song has no album track list to show.
         tracksTableView.isHidden = !musicItem.isAlbum
@@ -118,6 +134,7 @@ class MusicDetailViewController: UIViewController {
                 case .success(let tracks):
                     self.tracks = tracks
                     self.tracksTableView.reloadData()
+                    self.tracksTableHeightConstraint.constant = min(CGFloat(tracks.count) * 52, 260)
 
                 case .failure(let error):
                     print("Bside album tracks failed: \(error)")

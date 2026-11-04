@@ -23,6 +23,15 @@ struct MusicItem: Codable {
     let trackViewUrl: URL?
     let collectionViewUrl: URL?
     let previewUrl: URL?
+    
+    var detailArtworkURL: URL? {
+        guard let artworkUrl100 else { return nil }
+        let largerURL = artworkUrl100.absoluteString.replacingOccurrences(
+            of: "/100x100bb.jpg",
+            with: "/600x600bb.jpg"
+        )
+        return URL(string: largerURL) ?? artworkUrl100
+    }
 
     var title: String {
         trackName ?? collectionName ?? "Unknown title"

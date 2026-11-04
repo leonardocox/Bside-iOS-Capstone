@@ -136,24 +136,27 @@
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="IrH-hA-Inm">
-                                <rect key="frame" x="24" y="562.66666666666663" width="345" height="86.333333333333371"/>
+                                <rect key="frame" x="24" y="562.66666666666663" width="345" height="52"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" priority="750" constant="52" id="vLP-C5-RvM"/>
+                                </constraints>
                                 <color key="sectionIndexBackgroundColor" name="BsideBackground"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TrackCell" id="sep-XG-5vk" customClass="TrackPreviewCell" customModule="Bside" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="345" height="51"/>
+                                        <rect key="frame" x="0.0" y="50" width="345" height="51.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sep-XG-5vk" id="Crc-lS-a3g">
-                                            <rect key="frame" x="0.0" y="0.0" width="345" height="51"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="345" height="51.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Hk-L2-waI" userLabel="Track Preview Button">
-                                                    <rect key="frame" x="291.66666666666669" y="8.3333333333333321" width="37.333333333333314" height="34.333333333333343"/>
+                                                    <rect key="frame" x="291.66666666666669" y="8" width="37.333333333333314" height="35.333333333333336"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" title="▶"/>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3O4-2p-1GF" userLabel="Track Title">
-                                                    <rect key="frame" x="16" y="15" width="42" height="21"/>
+                                                    <rect key="frame" x="16" y="15.333333333333336" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -164,8 +167,9 @@
                                                 <constraint firstItem="3O4-2p-1GF" firstAttribute="leading" secondItem="Crc-lS-a3g" secondAttribute="leading" constant="16" id="JWL-mf-yMH"/>
                                                 <constraint firstItem="8Hk-L2-waI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3O4-2p-1GF" secondAttribute="trailing" constant="8" id="Jf5-bP-gYG"/>
                                                 <constraint firstAttribute="trailing" secondItem="8Hk-L2-waI" secondAttribute="trailing" constant="16" id="KgN-bf-S1i"/>
+                                                <constraint firstAttribute="bottom" secondItem="8Hk-L2-waI" secondAttribute="bottom" constant="8" id="UnY-yS-IvH"/>
+                                                <constraint firstItem="8Hk-L2-waI" firstAttribute="top" secondItem="Crc-lS-a3g" secondAttribute="top" constant="8" id="ldJ-Jf-k32"/>
                                                 <constraint firstItem="3O4-2p-1GF" firstAttribute="centerY" secondItem="Crc-lS-a3g" secondAttribute="centerY" id="odU-SF-rjx"/>
-                                                <constraint firstItem="8Hk-L2-waI" firstAttribute="centerY" secondItem="Crc-lS-a3g" secondAttribute="centerY" id="t9c-6v-bNI"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -206,7 +210,7 @@
                             <constraint firstItem="HNj-tX-e4M" firstAttribute="top" secondItem="x0Z-Ws-EYx" secondAttribute="bottom" constant="20" id="5GP-Jj-7E9"/>
                             <constraint firstItem="dFx-l9-tgk" firstAttribute="trailing" secondItem="5KU-hu-S4A" secondAttribute="trailing" constant="24" id="IQy-ll-XUU"/>
                             <constraint firstItem="x0Z-Ws-EYx" firstAttribute="top" secondItem="dFx-l9-tgk" secondAttribute="top" constant="24" id="KLU-Ea-8Sw"/>
-                            <constraint firstItem="RVI-gT-oOJ" firstAttribute="top" secondItem="IrH-hA-Inm" secondAttribute="bottom" constant="12" id="No7-Pi-X12"/>
+                            <constraint firstItem="RVI-gT-oOJ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="IrH-hA-Inm" secondAttribute="bottom" constant="12" id="No7-Pi-X12"/>
                             <constraint firstItem="dFx-l9-tgk" firstAttribute="bottom" secondItem="RVI-gT-oOJ" secondAttribute="bottom" constant="24" id="QOk-Bp-dad"/>
                             <constraint firstItem="dhx-E8-n0a" firstAttribute="top" secondItem="5KU-hu-S4A" secondAttribute="bottom" constant="12" id="Qcb-YE-95Y"/>
                             <constraint firstItem="dhx-E8-n0a" firstAttribute="leading" secondItem="dFx-l9-tgk" secondAttribute="leading" constant="24" id="W3G-Xy-ggu"/>
@@ -228,6 +232,7 @@
                         <outlet property="previewButton" destination="dhx-E8-n0a" id="3Yl-Lf-bmW"/>
                         <outlet property="previewButtonHeightConstraint" destination="Dez-G9-zxD" id="gz4-Sw-taD"/>
                         <outlet property="titleLabel" destination="HNj-tX-e4M" id="ZGL-24-f1v"/>
+                        <outlet property="tracksTableHeightConstraint" destination="vLP-C5-RvM" id="HX4-rT-Xll"/>
                         <outlet property="tracksTableView" destination="IrH-hA-Inm" id="AaV-z4-CeI"/>
                     </connections>
                 </viewController>
