@@ -17,7 +17,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" placeholder="Search artists, songs, and albums" translatesAutoresizingMaskIntoConstraints="NO" id="PHX-3c-AD1">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BsideDiscoverGlass" translatesAutoresizingMaskIntoConstraints="NO" id="pHG-Sa-zD4" userLabel="Discover Night Background">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="735"/>
+                            </imageView>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search artists, songs, and albums" translatesAutoresizingMaskIntoConstraints="NO" id="PHX-3c-AD1">
                                 <rect key="frame" x="0.0" y="172" width="393" height="64"/>
                                 <textInputTraits key="textInputTraits"/>
                                 <connections>
@@ -26,7 +29,7 @@
                             </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="84" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="oCF-rX-0VP">
                                 <rect key="frame" x="0.0" y="236" width="393" height="499"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MusicCell" id="RHZ-tD-7uY" customClass="MusicResultCell" customModule="Bside" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="84"/>
@@ -80,21 +83,36 @@
                                     <outlet property="dataSource" destination="BYZ-38-t0r" id="Fx1-2R-NkQ"/>
                                 </connections>
                             </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BsideWordmark" translatesAutoresizingMaskIntoConstraints="NO" id="cMu-ac-Wlo">
+                                <rect key="frame" x="46.666666666666657" y="371" width="300" height="110"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="110" id="4VP-5A-eab"/>
+                                    <constraint firstAttribute="width" constant="300" id="cAN-gR-N4F"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="cMu-ac-Wlo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="1vI-NE-E1K"/>
+                            <constraint firstItem="pHG-Sa-zD4" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="5rC-Ld-Raa"/>
+                            <constraint firstItem="cMu-ac-Wlo" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="7FE-6n-61K"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="pHG-Sa-zD4" secondAttribute="bottom" id="7Gx-e1-uff"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="PHX-3c-AD1" secondAttribute="trailing" id="9Wl-2Y-jR8"/>
                             <constraint firstItem="oCF-rX-0VP" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Cef-MS-qgX"/>
                             <constraint firstItem="PHX-3c-AD1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="G1j-9F-Z6a"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="top" secondItem="PHX-3c-AD1" secondAttribute="top" id="IfC-WK-uGU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oCF-rX-0VP" secondAttribute="trailing" id="Nm9-k6-VRx"/>
                             <constraint firstItem="oCF-rX-0VP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="bgW-ke-2h6"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="pHG-Sa-zD4" secondAttribute="trailing" id="rkD-nc-ez5"/>
+                            <constraint firstItem="pHG-Sa-zD4" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="wgs-v6-tPU"/>
                             <constraint firstItem="oCF-rX-0VP" firstAttribute="top" secondItem="PHX-3c-AD1" secondAttribute="bottom" id="yz7-cq-deX"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Bside" id="ums-Ru-327"/>
+                    <navigationItem key="navigationItem" id="ums-Ru-327"/>
                     <connections>
+                        <outlet property="discoverBackgroundImageView" destination="pHG-Sa-zD4" id="qPh-hr-bSP"/>
+                        <outlet property="heroImageView" destination="cMu-ac-Wlo" id="ZK7-dO-LFd"/>
                         <outlet property="tableView" destination="oCF-rX-0VP" id="Rdc-s4-bW5"/>
                     </connections>
                 </viewController>
@@ -592,6 +610,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="BsideDiscoverGlass" width="852" height="1846"/>
+        <image name="BsideWordmark" width="2172" height="724"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <namedColor name="BsideAccent">
             <color red="0.19215686274509805" green="0.74901960784313726" blue="0.84313725490196079" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
