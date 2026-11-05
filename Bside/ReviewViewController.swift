@@ -20,6 +20,7 @@ class ReviewViewController: UIViewController, UITextViewDelegate {
     
     // the song or album passed from music detail
     var musicItem: MusicItem?
+    var existingReview: MusicReview?
     
     private var rating: Double = 0
     private let reviewPlaceholder = "Write a review?"
@@ -28,6 +29,47 @@ class ReviewViewController: UIViewController, UITextViewDelegate {
         super.viewDidLoad()
 
         title = "Review"
+        
+        let backdrop = UIImageView(image: UIImage(named: "BsideDiscoverGlass"))
+        backdrop.translatesAutoresizingMaskIntoConstraints = false
+        backdrop.contentMode = .scaleAspectFill
+        backdrop.clipsToBounds = true
+        view.insertSubview(backdrop, at: 0)
+
+        let softeningLayer = UIView()
+        softeningLayer.translatesAutoresizingMaskIntoConstraints = false
+        softeningLayer.backgroundColor = UIColor.white.withAlphaComponent(0.90)
+        view.insertSubview(softeningLayer, aboveSubview: backdrop)
+
+        NSLayoutConstraint.activate([
+            backdrop.topAnchor.constraint(equalTo: view.topAnchor),
+            backdrop.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            backdrop.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            backdrop.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+
+            softeningLayer.topAnchor.constraint(equalTo: view.topAnchor),
+            softeningLayer.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            softeningLayer.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            softeningLayer.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+        ])
+
+        artworkImageView.layer.cornerRadius = 14
+        artworkImageView.clipsToBounds = true
+        artworkImageView.contentMode = .scaleAspectFill
+
+        titleLabel.font = .systemFont(ofSize: 22, weight: .bold)
+        titleLabel.textColor = UIColor(named: "BsideInk") ?? .label
+        titleLabel.numberOfLines = 2
+
+        artistLabel.font = .systemFont(ofSize: 17)
+        artistLabel.textColor = .secondaryLabel
+
+        reviewTextView.font = .systemFont(ofSize: 17)
+        reviewTextView.backgroundColor = UIColor.white.withAlphaComponent(0.78)
+        reviewTextView.layer.cornerRadius = 16
+        reviewTextView.textContainerInset = UIEdgeInsets(
+            top: 14, left: 12, bottom: 14, right: 12
+        )
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             title: "Save",
@@ -80,9 +122,30 @@ class ReviewViewController: UIViewController, UITextViewDelegate {
             print("Review received: \(musicItem.title) by \(musicItem.artistName)")
 
             NukeExtensions.loadImage(
-                with: musicItem.artworkUrl100,
+                with: musicItem.detailArtworkURL,
                 into: artworkImageView
             )
+        }
+        
+        do {
+            if existingReview == nil, let musicItem = musicItem {
+                existingReview = try ReviewStore.review(for: musicItem)
+            }
+
+            if let existingReview = existingReview {
+                firstListenSwitch.isOn = existingReview.firstListen
+                likedSwitch.isOn = existingReview.liked
+                rating = existingReview.rating
+                updateStars()
+
+                if !existingReview.reviewText.isEmpty {
+                    reviewTextView.text = existingReview.reviewText
+                    reviewTextView.textColor = .label
+                }
+            }
+        } catch {
+            showSaveError("Your saved review could not be loaded.")
+            print("Review load failed: \(error)")
         }
     }
     
@@ -186,17 +249,17 @@ class ReviewViewController: UIViewController, UITextViewDelegate {
         }
 
         let review = MusicReview(
-            id: UUID(),
+            id: existingReview?.id ?? UUID(),
             musicItem: musicItem,
             firstListen: firstListenSwitch.isOn,
             liked: likedSwitch.isOn,
             rating: rating,
             reviewText: reviewText,
-            createdAt: Date()
+            createdAt: existingReview?.createdAt ?? Date()
         )
 
         do {
-            try ReviewStore.add(review)
+            try ReviewStore.save(review)
             navigationController?.popViewController(animated: true)
         } catch {
             showSaveError("Your review could not be saved. Please try again.")

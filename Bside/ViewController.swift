@@ -29,6 +29,15 @@ class ViewController: UIViewController {
         heroImageView.isUserInteractionEnabled = false
         tableView.backgroundColor = .clear
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        if !heroImageView.isHidden && !UIAccessibility.isReduceMotionEnabled {
+            heroImageView.alpha = 0
+            heroImageView.transform = CGAffineTransform(scaleX: 0.94, y: 0.94)
+        }
+    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -52,9 +61,6 @@ class ViewController: UIViewController {
             heroImageView.alpha = 1
             return
         }
-
-        heroImageView.alpha = 0
-        heroImageView.transform = CGAffineTransform(scaleX: 0.94, y: 0.94)
 
         UIView.animate(withDuration: 0.8, delay: 0.15, options: [.curveEaseOut]) {
             self.heroImageView.alpha = 1

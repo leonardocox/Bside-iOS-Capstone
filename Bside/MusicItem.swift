@@ -40,4 +40,5 @@ struct MusicItem: Codable {
     var isAlbum: Bool {
         wrapperType == "collection"
     }
+    
 }
