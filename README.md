@@ -86,7 +86,7 @@ I finished the Journal design with artwork cards and a softened blue glass backg
 
 I ran through the full app in the simulator: searching, opening songs and albums, playing available previews, saving reviews, reopening the app to check persistence, editing entries, and deleting them. Everything worked in that final walkthrough.
 
-[Watch the final app walkthrough](https://www.loom.com/share/b97829dab23a4a6e831d0588fa96e39a)
+[Watch the final app walkthrough](https://www.loom.com/share/a2c4fffa245c45a78780689c1ef9500f)
 
 ### November 5 Unit 9 Progress Checkpoint
 
