@@ -168,7 +168,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="345" height="51.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Hk-L2-waI" userLabel="Track Preview Button">
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Hk-L2-waI" userLabel="Track Preview Button">
                                                     <rect key="frame" x="291.66666666666669" y="8" width="37.333333333333314" height="35.333333333333336"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" title="▶"/>
@@ -575,7 +575,7 @@
         <scene sceneID="Fwx-Ig-5Ks">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hlF-6x-gQf" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Discover" id="fCF-iQ-psd"/>
+                    <tabBarItem key="tabBarItem" title="Discover" image="magnifyingglass" catalog="system" id="fCF-iQ-psd"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="H3S-6p-xLw">
                         <rect key="frame" x="0.0" y="118" width="393" height="54"/>
@@ -594,7 +594,7 @@
         <scene sceneID="fJB-B8-A5Q">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="OYe-eN-cmg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Journal" id="SOA-UY-LZo"/>
+                    <tabBarItem key="tabBarItem" title="Journal" image="book.closed" catalog="system" id="SOA-UY-LZo"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="9sY-ht-gkN">
                         <rect key="frame" x="0.0" y="118" width="393" height="54"/>
@@ -611,11 +611,13 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="AJx-RU-av5"/>
+        <segue reference="EvG-Vs-D1f"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="BsideDiscoverGlass" width="852" height="1846"/>
         <image name="BsideWordmark" width="2172" height="724"/>
+        <image name="book.closed" catalog="system" width="115" height="128"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <namedColor name="BsideAccent">
             <color red="0.19215686274509805" green="0.74901960784313726" blue="0.84313725490196079" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
