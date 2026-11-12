@@ -35,6 +35,8 @@ Bside is a music journal where you can search for songs and albums, see their ar
 - [x] A user can give a song or album a rating in half-star increments and write an optional review.
 - [x] A user can save an entry and find it in their personal journal.
 - [x] A user's journal entries remain available after closing and reopening the app.
+- [x] A user can edit a saved rating, listening status, and review.
+- [x] A user can delete a journal entry with a confirmation.
 
 **Optional Nice-to-have Stories**
 
@@ -52,7 +54,8 @@ Bside is a music journal where you can search for songs and albums, see their ar
 - [x] Review Screen
   - Users can mark first listen and liked status, choose a half-star rating, add optional notes, and save.
 - [x] Journal Screen
-  - Users can revisit saved entries and open a saved review to see its details.
+  - Users can revisit saved entries, open a review to see its details, and edit it.
+  - Users can swipe a journal entry to delete it after confirming.
 
 ### 3. Navigation
 
@@ -68,12 +71,22 @@ Bside is a music journal where you can search for songs and albums, see their ar
 - [x] Choosing Write Review opens Review for the selected song or album.
 - [x] Saving a review returns to Music Detail. The saved entry is available from the Journal tab.
 - [x] Selecting an entry in Journal opens its saved review.
+- [x] Choosing Edit from a saved review opens the Review screen with the existing values; saving updates that entry.
+- [x] Swiping a Journal entry offers a confirmed delete action.
 
 ## Wireframes
 
 <img src="wireframes.jpg.jpg" width="600" alt="Hand-drawn Bside wireframes">
 
 ## Project Progress
+
+### Final Build — November 12
+
+I finished the Journal design with artwork cards and a softened blue glass background that matches Discover. Saved reviews now show larger artwork, and the Review screen uses the same visual style. I also added icons to the Discover and Journal tabs and fixed long album track titles so the preview button stays visible.
+
+I ran through the full app in the simulator: searching, opening songs and albums, playing available previews, saving reviews, reopening the app to check persistence, editing entries, and deleting them. Everything worked in that final walkthrough.
+
+[Watch the final app walkthrough](https://www.loom.com/share/b97829dab23a4a6e831d0588fa96e39a)
 
 ### November 5 Unit 9 Progress Checkpoint
 
